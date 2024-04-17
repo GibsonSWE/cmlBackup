@@ -2,8 +2,6 @@ from src import constants as c
 
 import requests
 import os
-import json
-import yaml
 
 ##  DISABLE WARNINGS
 from urllib3.exceptions import InsecureRequestWarning
@@ -44,6 +42,7 @@ def get_lab_details(token, lab_id):
     params = {}
     response = requests.get(c.CML_URL+'/labs/'+lab_id, verify=False, headers=headers)
     return response.json()
+
 
 def get_state(token, lab_id):
     headers = {
@@ -109,6 +108,7 @@ def extract_config(token, lab_id):
     return response
 
 
+
 def main():
     token = get_token()
     labs = get_labs(token)
@@ -128,7 +128,6 @@ def main():
     response = download_lab(token, '29c32a3a-8d55-4f3a-b998-f008c23c7279')
     with open('lab.yaml', 'w') as file:
         file.write(response.text)
-
 
 
 if __name__ == "__main__":
