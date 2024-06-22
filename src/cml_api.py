@@ -103,8 +103,8 @@ def extract_config(token, lab_id):
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+token
     }
-    params = {}
-    response = requests.put(c.CML_URL+'/labs/'+lab_id+'/extract_configuration', verify=False, headers=headers)
+    params = {'lab_id': lab_id}
+    response = requests.get(c.CML_URL+'/build_configurations', verify=False, headers=headers, params=params)
     return response
 
 
